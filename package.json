@@ -1,6 +1,6 @@
 {
   "name": "havocwebdblite",
-  "version": "1.0.0",
+  "version": "0.0.0.Alpha",
   "main": "./lib/cjs/index.js",
   "module": "./lib/index.js",
   "scripts": {
@@ -14,7 +14,7 @@
     "javascript"
   ],
   "author": "Havocweb Tech",
-  "license": "ISC",
+  "license": "MIT",
   "description": "Havocweb Tech project DB",
   "devDependencies": {
     "@types/node": "^20.14.9",
