@@ -7,19 +7,31 @@
     "tsc": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
     "prepublish": "npm run tsc"
   },
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "keywords": [
     "Database",
     "SQLlite",
     "express",
     "javascript"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Havocweb-tech/Havocwebdblite.git"
+  },
   "author": "Havocweb Tech",
   "license": "MIT",
-  "description": "Havocweb Tech project DB",
+  "bugs": {
+    "url": "https://github.com/Havocweb-tech/Havocwebdblite/issues"
+  },
+  "homepage": "https://github.com/Havocweb-tech/Havocwebdblite#readme",
+  "description": "Havocweb Tech Mini project DB",
   "devDependencies": {
     "@types/node": "^20.14.9",
     "typescript": "^5.5.2"
   },
+  "private": false,
   "files": [
     "lib/"
   ],
