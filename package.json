@@ -1,0 +1,29 @@
+{
+  "name": "havocwebdblite",
+  "version": "1.0.0",
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/index.js",
+  "scripts": {
+    "tsc": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
+    "prepublish": "npm run tsc"
+  },
+  "keywords": [
+    "Database",
+    "SQLlite",
+    "express",
+    "javascript"
+  ],
+  "author": "Havocweb Tech",
+  "license": "ISC",
+  "description": "Havocweb Tech project DB",
+  "devDependencies": {
+    "@types/node": "^20.14.9",
+    "typescript": "^5.5.2"
+  },
+  "files": [
+    "lib/"
+  ],
+  "dependencies": {
+    "fs": "^0.0.1-security"
+  }
+}
