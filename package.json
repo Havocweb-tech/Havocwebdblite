@@ -1,6 +1,6 @@
 {
   "name": "havocwebdblite",
-  "version": "0.0.0-Alpha",
+  "version": "0.0.0-Alpha-1",
   "main": "./lib/cjs/index.js",
   "module": "./lib/index.js",
   "scripts": {
@@ -33,7 +33,8 @@
   },
   "private": false,
   "files": [
-    "lib/"
+    "lib/",
+    "types"
   ],
   "dependencies": {
     "fs": "^0.0.1-security"
