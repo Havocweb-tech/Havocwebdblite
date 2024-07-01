@@ -145,7 +145,7 @@ class Tables {
             metadata.rowNumber = remainingRows.length;
 
             // Update the metadata with the remaining rows
-            metadata.rows = remainingRows;
+            metadata.Rows = remainingRows;
             await fs.writeFile(
                 tableDataFilePath,
                 JSON.stringify(metadata, null, 2),
