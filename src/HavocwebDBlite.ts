@@ -1,8 +1,5 @@
 import createDatabase from "./createDatabase";
-import createTable from "./CreateTable";
-import addRow from "./addRow";
-import selectRows from "./selectRow";
-import deleteRow from "./DeleteRow";
+import Tables from "./Table";
 class HavocwebDB {
     databaseName: string;
     databaseUniqueID: string;
@@ -16,17 +13,33 @@ class HavocwebDB {
         createDatabase(this.databaseName, this.databaseUniqueID);
     }
     addTable(tableName: string, columnList: string[]): void{
-        createTable(this.databaseName, this.databaseUniqueID, tableName, columnList);
+        const Table = new Tables(tableName, 0, columnList, [], this.databaseName);
+        Table.createTable(this.databaseUniqueID);
     }
     insertIntoTable(tableName: string, row: {}): void{
-        addRow(this.databaseName, tableName, row);
+        const Table = new Tables(tableName, 0, [], [], this.databaseName);
+        Table.insertRow(row);
+        
     }
-    selectRow(tableName: string, criteria: {}): Promise<any[]>{
-        const Rows = selectRows(this.databaseName, tableName, criteria);
+    select(tableName: string, key: string, value: string): Promise<any[]>{
+        const Table = new Tables(tableName, 0, [], [], this.databaseName)
+        const Rows = Table.select(key, value);
         return Rows;
     }
-    deleteRow(tableName: string, criteria: {}): void{
-        deleteRow(this.databaseName, tableName, criteria);
+    delete(tableName: string, key: string, value: string): void{
+        const Table = new Tables(tableName, 0, [], [], this.databaseName);
+        Table.delete(key, value);
     }
+    getTableRowCount(tableName: string): Promise<number>{
+        const Table = new Tables(tableName, 0, [], [], this.databaseName);
+        const totalRowCount = Table.getRowCount();
+        return totalRowCount;
+    }
+    getTableDate(tableName: string): string{
+        const Table = new Tables(tableName, 0, [], [], this.databaseName);
+        const createDate = Table.createdAt
+        return createDate;
+    }
+
 }
 export {HavocwebDB};

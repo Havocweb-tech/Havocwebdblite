@@ -9,7 +9,7 @@ const addRow = async (
     databaseName: string, 
     tableName: string, 
     row: Omit<Row, 'id'>
-): Promise<void> => {
+): Promise<string> => {
     try {
         // Get the project's root directory
         const projectRoot = process.cwd();
@@ -20,13 +20,11 @@ const addRow = async (
         // Read the current metadata
         const fileContent = await fs.readFile(tableDataFilePath, 'utf8');
         const metadata = JSON.parse(fileContent);
-        console.log("meta: ", metadata);
 
         // Check if all columns are filled and if there are extra columns
         const columnList = metadata.column.filter((column: string) => column !== 'id');
         const rowKeys = Object.keys(row);
         
-        console.log("got here");
         // Check for missing columns
         const missingColumns = columnList.filter((column: string) => !rowKeys.includes(column));
         if (missingColumns.length > 0) {
@@ -50,9 +48,8 @@ const addRow = async (
         // Write the updated metadata back to the file
         await fs.writeFile(tableDataFilePath, JSON.stringify(metadata, null, 2), 'utf8');
 
-        console.log(`Row added successfully with ID: ${rowID}`);
+        return "Added Successfully";
     } catch (error) {
-        console.error(`Error adding row: ${error}`);
         throw new Error(`Error adding row: ${error}`);
     }
 };
