@@ -147,7 +147,7 @@ class Tables {
 
             // Update the row count
             metadata.rowNumber = remainingRows.length;
-
+            console.log(remainingRows);
             // Update the metadata with the remaining rows
             metadata.Rows = remainingRows;
             await fs.writeFile(
