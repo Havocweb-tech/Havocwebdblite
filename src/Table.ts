@@ -5,6 +5,13 @@ import addRow from "./addRow";
 interface Row {
     [key: string]: any;
 }
+interface Metadata {
+    tableName: string;
+    rowNumber: number;
+    createdAt: string;
+    column: string[];
+    Rows: Row[];
+}
 class Tables {
     tableName: string;
     rowNumber: number;
@@ -115,30 +122,27 @@ class Tables {
         try {
             const databaseName = this.databaseName;
             const tableName = this.tableName;
-            const criteria: { [key: string]: any } = {
-                [key]: value,
-            };
+            const criteria: { [key: string]: any } = { [key]: value };
+
             // Get the project's root directory
             const projectRoot = process.cwd();
 
             // Define the path to the metadata file
             const tableDataFilePath = join(
                 projectRoot,
-                "databases",
+                'databases',
                 databaseName,
                 tableName,
-                "tableinfo.json"
+                'tableinfo.json'
             );
 
             // Read the current metadata
-            const fileContent = await fs.readFile(tableDataFilePath, "utf8");
-            const metadata = JSON.parse(fileContent);
+            const fileContent = await fs.readFile(tableDataFilePath, 'utf8');
+            const metadata: Metadata = JSON.parse(fileContent);
 
             // Filter out rows that match the criteria
             const remainingRows = metadata.Rows.filter((row: Row) => {
-                return !Object.keys(criteria).every(
-                    (key) => row[key] === criteria[key]
-                );
+                return !Object.keys(criteria).every(key => row[key] === criteria[key]);
             });
 
             // Update the row count
@@ -149,10 +153,10 @@ class Tables {
             await fs.writeFile(
                 tableDataFilePath,
                 JSON.stringify(metadata, null, 2),
-                "utf8"
+                'utf8'
             );
 
-            console.log("Row(s) deleted successfully");
+            console.log('Row(s) deleted successfully');
         } catch (error) {
             throw new Error(`Error deleting row(s): ${error}`);
         }
