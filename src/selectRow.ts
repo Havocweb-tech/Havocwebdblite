@@ -19,6 +19,9 @@ const selectRows = async (
 
         // Read the current metadata
         const fileContent = await fs.readFile(tableDataFilePath, 'utf8');
+        if (fileContent === null || fileContent === ""){
+            return [{message: "Cannot find Table"}];
+        }
         const metadata = JSON.parse(fileContent);
         const criteriaCheck = Object.keys(criteria);
         if (criteriaCheck.length < 1){
