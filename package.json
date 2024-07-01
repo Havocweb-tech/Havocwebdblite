@@ -1,6 +1,6 @@
 {
   "name": "havocwebdblite",
-  "version": "0.0.1-typo-2",
+  "version": "0.0.2-typo-2",
   "main": "./lib/cjs/index.js",
   "module": "./lib/index.js",
   "scripts": {

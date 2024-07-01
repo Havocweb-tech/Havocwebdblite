@@ -141,22 +141,28 @@ class Tables {
             const metadata: Metadata = JSON.parse(fileContent);
 
             // Filter out rows that match the criteria
-            const remainingRows = metadata.Rows.filter((row: Row) => {
-                return !Object.keys(criteria).every(key => row[key] === criteria[key]);
+            const rowIndex = metadata.Rows.findIndex((row: Row) => {
+                return Object.keys(criteria).every(key => row[key] === criteria[key]);
             });
 
-            // Update the row count
-            metadata.rowNumber = remainingRows.length;
-            console.log(remainingRows);
-            // Update the metadata with the remaining rows
-            metadata.Rows = remainingRows;
-            await fs.writeFile(
-                tableDataFilePath,
-                JSON.stringify(metadata, null, 2),
-                'utf8'
-            );
+            // If a row that matches the criteria is found, delete it
+            if (rowIndex !== -1) {
+                metadata.Rows.splice(rowIndex, 1);
 
-            console.log('Row(s) deleted successfully');
+                // Update the row count
+                metadata.rowNumber = metadata.Rows.length;
+
+                // Write the updated metadata back to the file
+                await fs.writeFile(
+                    tableDataFilePath,
+                    JSON.stringify(metadata, null, 2),
+                    'utf8'
+                );
+
+                console.log('Row(s) deleted successfully');
+            } else {
+                console.log('No matching row found');
+            }
         } catch (error) {
             throw new Error(`Error deleting row(s): ${error}`);
         }
