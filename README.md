@@ -18,7 +18,7 @@
 </p>
 
 ![Contributors](https://img.shields.io/github/contributors/Havocweb-tech/Havocwebdblite?color=dark-green)
-[![npm Version](https://img.shields.io/npm/v/Havocwebdblite.svg)](https://www.npmjs.com/package/havocwebdblite)
+[![npm Version](https://img.shields.io/npm/v/havocwebdblite.svg)](https://www.npmjs.com/package/havocwebdblite)
 ![Forks](https://img.shields.io/github/forks/Havocweb-tech/Havocwebdblite?style=social)
 ![Stargazers](https://img.shields.io/github/stars/Havocweb-tech/Havocwebdblite?style=social)
 
