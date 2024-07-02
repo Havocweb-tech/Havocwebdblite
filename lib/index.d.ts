@@ -1,2 +1,2 @@
 export default HavocwebDB;
-import { HavocwebDB } from "./HavocwebDBlite";
+import { HavocwebDB } from "./primitives/HavocwebDBlite";
