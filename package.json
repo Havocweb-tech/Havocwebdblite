@@ -1,6 +1,6 @@
 {
   "name": "havocwebdblite",
-  "version": "0.0.4",
+  "version": "0.1.4",
   "main": "./lib/cjs/index.js",
   "module": "./lib/index.js",
   "scripts": {
