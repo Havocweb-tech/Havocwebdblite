@@ -21,12 +21,12 @@ class HavocwebDB {
         Table.insertRow(row);
         
     }
-    select(tableName: string, key: string, value: string): Promise<any[]>{
+    sqlSelect(tableName: string, key: string, value: string): Promise<any[]>{
         const Table = new Tables(tableName, 0, [], [], this.databaseName)
         const Rows = Table.select(key, value);
         return Rows;
     }
-    delete(tableName: string, key: string, value: string): void{
+    sqlDelete(tableName: string, key: string, value: string): void{
         const Table = new Tables(tableName, 0, [], [], this.databaseName);
         Table.delete(key, value);
     }

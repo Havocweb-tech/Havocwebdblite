@@ -5,8 +5,8 @@ export class HavocwebDB {
     createLocalDB(): void;
     addTable(tableName: any, columnList: any): void;
     insertIntoTable(tableName: any, row: any): void;
-    select(tableName: any, key: any, value: any): any;
-    delete(tableName: any, key: any, value: any): void;
+    sqlSelect(tableName: any, key: any, value: any): any;
+    sqlDelete(tableName: any, key: any, value: any): void;
     getTableRowCount(tableName: any): any;
     getTableDate(tableName: any): string;
 }
