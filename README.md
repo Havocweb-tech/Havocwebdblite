@@ -1,6 +1,3 @@
-Here's a refined version of your README documentation with improved clarity and corrected grammar:
-
----
 
 <br/>
 <p align="center">
