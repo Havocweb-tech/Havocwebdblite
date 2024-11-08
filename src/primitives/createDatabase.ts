@@ -6,20 +6,15 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const ENCRYPTION_KEY = getEncryptionKey();
-const SALT = process.env.SALT;
-
-if (!SALT) {
-    throw new Error("SALT is not defined in the environment variables");
-}
 
 // Function to verify or generate the encryption key
 function getEncryptionKey(): Buffer {
-    let key = process.env.ENCRYPTION_KEY;
+    let key = process.env.HAVOCWEB_DB_LITE_ENCRYPTION_KEY;
 
     // Check if the key is a valid 32-byte base64 string
     if (!key || Buffer.from(key, 'base64').length !== 32) {
         const newKey = crypto.randomBytes(32).toString('base64');
-        updateEnvFile('ENCRYPTION_KEY', newKey);
+        updateEnvFile('HAVOCWEB_DB_LITE_ENCRYPTION_KEY', newKey);
         dotenv.config(); // Reload .env with the updated key
         key = newKey;
     }
