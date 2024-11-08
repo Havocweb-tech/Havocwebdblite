@@ -83,7 +83,7 @@ class Tables {
         const projectRoot = process.cwd();
 
         // Set up folder structure
-        const rootFolder = join(projectRoot, "databases");
+        const rootFolder = join(projectRoot, "Database");
         const databaseFolder = join(rootFolder, databaseName);
         const tableFolder = join(databaseFolder, tableName);
         await fs.mkdir(tableFolder, { recursive: true });
