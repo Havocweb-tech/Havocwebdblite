@@ -1,6 +1,6 @@
 {
   "name": "havocwebdblite",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "main": "./lib/cjs/index.js",
   "module": "./lib/index.js",
   "types": "types/index.d.ts",
@@ -38,6 +38,7 @@
     "types"
   ],
   "dependencies": {
+    "dotenv": "^16.4.5",
     "fs": "^0.0.1-security"
   }
 }

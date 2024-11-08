@@ -1,8 +1,14 @@
-import { promises as fs } from 'fs';
-import { join } from 'path';
+import { decryptAndLoad } from './openDB';
+import { encryptAndSave } from './saveDB';
 
 interface Row {
     [key: string]: any;
+}
+
+interface TableMetadata {
+    column: string[];     // Columns in the table
+    rowNumber: number;    // Current row count
+    Rows: Row[];          // Existing rows
 }
 
 const addRow = async (
@@ -11,17 +17,15 @@ const addRow = async (
     row: Omit<Row, 'id'>
 ): Promise<string> => {
     try {
-        // Get the project's root directory
-        const projectRoot = process.cwd();
+        // Load the table metadata
+        const metadata: TableMetadata = await decryptAndLoad(databaseName, tableName) as TableMetadata;
 
-        // Define the path to the metadata file
-        const tableDataFilePath = join(projectRoot, 'databases', databaseName, tableName, 'tableinfo.json');
+        // Ensure the 'column' property exists and is an array
+        if (!metadata.column || !Array.isArray(metadata.column)) {
+            throw new Error("Table metadata is missing a 'column' property.");
+        }
 
-        // Read the current metadata
-        const fileContent = await fs.readFile(tableDataFilePath, 'utf8');
-        const metadata = JSON.parse(fileContent);
-
-        // Check if all columns are filled and if there are extra columns
+        // Filter out the 'id' column
         const columnList = metadata.column.filter((column: string) => column !== 'id');
         const rowKeys = Object.keys(row);
         
@@ -45,8 +49,12 @@ const addRow = async (
         metadata.Rows.push(newRow);
         metadata.rowNumber += 1;
 
-        // Write the updated metadata back to the file
-        await fs.writeFile(tableDataFilePath, JSON.stringify(metadata, null, 2), 'utf8');
+
+        await encryptAndSave(databaseName, tableName, metadata);
+
+        // Define the file path and write the updated metadata back to the file
+        // const tableDataFilePath = join(__dirname, `${databaseName}_${tableName}.json`);
+        // await fs.writeFile(tableDataFilePath, JSON.stringify(metadata, null, 2), 'utf8');
 
         return "Added Successfully";
     } catch (error) {

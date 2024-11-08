@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
-  "target": "es2016",
-  "module": "ES2020",
-  "strict": true,
-  "esModuleInterop": true,
-  "skipLibCheck": true,
-  "forceConsistentCasingInFileNames": true,
-  "outDir": "./lib",
+    "target": "es2016",
+    "module": "ES2020",
+    "moduleResolution": "node",  // Ensure Node.js-style module resolution
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./lib"
   },
   "include": [
     "./src"
