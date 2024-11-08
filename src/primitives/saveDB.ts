@@ -53,7 +53,7 @@ export const encryptAndSave = async (databaseName: string, tableName: string, da
     const jsonData = JSON.stringify(data);
     const { iv, encryptedData } = encryptData(jsonData, ENCRYPTION_KEY);
 
-    const filePath = join(tableFolder, 'metadata.hdblte');
+    const filePath = join(tableFolder, 'table.hdblte');
     await fs.writeFile(filePath, JSON.stringify({ iv, encryptedData }), 'utf8');
 
     console.log(`Data encrypted and saved successfully in ${filePath}`);
