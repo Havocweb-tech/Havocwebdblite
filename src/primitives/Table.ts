@@ -234,5 +234,17 @@ class Tables {
             throw new Error(`Error deleting row(s): ${error}`);
         }
     }
+    static tableAvailable = async (tableName: string, dbName: string) :Promise<Boolean> => {
+        const projectRoot = process.cwd();
+    const databaseFolder = join(projectRoot, 'Database', dbName, tableName);
+
+    try {
+        // Check if the database folder exists
+        await fs.access(databaseFolder);
+        return true; // Database is available
+    } catch {
+        return false; // Database is not available
+    }
+    }
 }
 export default Tables;

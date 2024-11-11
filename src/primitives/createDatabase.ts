@@ -2,6 +2,7 @@ import { promises as fs } from 'fs';
 import { join } from 'path';
 import crypto from 'crypto';
 import dotenv from 'dotenv';
+import { promises } from 'dns';
 
 dotenv.config();
 
@@ -86,5 +87,19 @@ const createDatabase = async (databaseName: string, databaseUniqueID: string): P
         throw new Error(error);
     }
 };
+const available = async (): Promise<Boolean> => {
+    const projectRoot = process.cwd();
+    const databaseFolder = join(projectRoot, 'Database');
+
+    try {
+        // Check if the database folder exists
+        await fs.access(databaseFolder);
+        return true; // Database is available
+    } catch {
+        return false; // Database is not available
+    }
+};
+
 
 export default createDatabase;
+export {available}

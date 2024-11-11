@@ -204,11 +204,11 @@ Make sure to enter a name and unique ID for your database before creating it.
 ```typescript
 import HavocwebDB from "havocwebdblite";
 
-const result = await HavocwebDB.query("CREATE TABLE users (id INTEGER, name TEXT, age INTEGER)");
+const result = await HavocwebDB.query("CREATE TABLE users (name TEXT, age INTEGER)");
 console.log(result);
 // Expected output: "Table users created successfully with columns: id, name, age"
 
-const result = await HavocwebDB.query("INSERT INTO users (id, name, age) VALUES (1, 'John', 30)");
+const result = await HavocwebDB.query("INSERT INTO users (name, age) VALUES (1, 'John', 30)");
 console.log(result);
 // Expected output: "Inserted into users"
 
@@ -220,8 +220,10 @@ const result = await HavocwebDB.query("DELETE FROM users WHERE name = 'John'");
 console.log(result);
 // Expected output: "Deleted from users"
 ```
-
 ---
+### isDatabaseAvailable and isTableAvailable(tableName: string)
+the return boolean indicating whether the database is available or not.
+also same for the table.
 
 ## Contribution and License Agreement
 

@@ -1,4 +1,6 @@
+import { promises } from "dns";
 import createDatabase from "./primitives/createDatabase";
+import {available} from "./primitives/createDatabase";
 import Tables from "./primitives/Table";
 import dotenv from 'dotenv';
 
@@ -55,6 +57,14 @@ class HavocwebDB {
     static getTableDate(tableName: string): string {
         const Table = new Tables(tableName, 0, [], [], DATABASE_NAME);
         return Table.createdAt;
+    }
+    static async isDatabaseAvailable(): Promise<Boolean>{
+        const res = await available();
+        return res;
+    }
+    static async isTableAvailable(tableName: string): Promise<Boolean>{
+        const res = await Tables.tableAvailable(tableName, DATABASE_NAME);
+        return res;
     }
 
     static async query(sqlString: string): Promise<any> {
