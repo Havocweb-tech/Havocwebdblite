@@ -3,6 +3,7 @@ import createDatabase from "./primitives/createDatabase";
 import {available} from "./primitives/createDatabase";
 import Tables from "./primitives/Table";
 import dotenv from 'dotenv';
+import { decryptAndLoad } from "./primitives/openDB";
 
 // Load environment variables from the .env file
 dotenv.config();
@@ -64,6 +65,10 @@ class HavocwebDB {
     }
     static async isTableAvailable(tableName: string): Promise<Boolean>{
         const res = await Tables.tableAvailable(tableName, DATABASE_NAME);
+        return res;
+    }
+    static async getTableFile(tableName: string): Promise<any>{
+        const res = await decryptAndLoad(DATABASE_NAME, tableName);
         return res;
     }
 
